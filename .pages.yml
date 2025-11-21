@@ -1,4 +1,4 @@
-collections:
+pages:
   movies:
     label: "الأعمال"
     folder: "content/movies"
