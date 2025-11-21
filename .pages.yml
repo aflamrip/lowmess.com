@@ -11,7 +11,16 @@ content:
     type: collection
     path: "content/movies"
     view:
-      fields: [ title, release_date ]
+      fields:
+        - name: images.poster
+          label: "صورة الغلاف"
+          type: image
+        - name: title
+          label: "العنوان"
+        - name: release_date
+          label: "تاريخ الإصدار"
+        - name: rating
+          label: "التقييم"
     fields:
       - name: title
         label: "العنوان"
@@ -81,7 +90,16 @@ content:
     type: collection
     path: "content/series"
     view:
-      fields: [ title, release_date ]
+      fields:
+        - name: images.poster
+          label: "صورة الغلاف"
+          type: image
+        - name: title
+          label: "العنوان"
+        - name: release_date
+          label: "تاريخ الإصدار"
+        - name: rating
+          label: "التقييم"
     fields:
       - name: title
         label: "العنوان"
@@ -161,7 +179,16 @@ content:
     type: collection
     path: "content/anime"
     view:
-      fields: [ title, release_date ]
+      fields:
+        - name: images.poster
+          label: "صورة الغلاف"
+          type: image
+        - name: title
+          label: "العنوان"
+        - name: release_date
+          label: "تاريخ الإصدار"
+        - name: rating
+          label: "التقييم"
     fields:
       - name: title
         label: "العنوان"
