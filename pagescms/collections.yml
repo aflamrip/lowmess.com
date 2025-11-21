@@ -1,1 +1,46 @@
-pagescms
+collections:
+  movies:
+    label: "الأعمال"
+    folder: "content/movies"
+    create: true
+    slug: "{{title}}"
+    fields:
+      title:
+        label: "اسم العمل"
+        type: text
+
+      poster:
+        label: "صورة البوستر"
+        type: image
+
+      description:
+        label: "الوصف"
+        type: textarea
+
+      keywords:
+        label: "الكلمات الدلالية"
+        type: list
+        summary: "{{item}}"
+
+      type:
+        label: "نوع العمل"
+        type: select
+        options:
+          - movie
+          - series
+
+      embed_url:
+        label: "رابط المشغل (Embed)"
+        type: text
+
+      mp4_url:
+        label: "رابط مباشر MP4"
+        type: text
+
+      release_year:
+        label: "سنة الإصدار"
+        type: number
+
+      imdb_rating:
+        label: "تقييم IMDB"
+        type: number
