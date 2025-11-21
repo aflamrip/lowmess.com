@@ -49,7 +49,6 @@ content:
       - name: tags
         label: "الكلمات الدلالية"
         type: string
-        multiple: true
       - name: meta_keywords
         label: "Meta Keywords"
         type: string
