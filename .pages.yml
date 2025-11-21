@@ -1,46 +1,49 @@
-pages:
-  movies:
-    label: "الأعمال"
-    folder: "content/movies"
-    create: true
-    slug: "{{title}}"
-    fields:
-      title:
-        label: "اسم العمل"
-        type: text
+media:
+  - name: media
+    label: "الوسائط"
+    input: "content/media"
+    output: "/media"
+    extensions: [jpg, jpeg, png, mp4]
 
-      poster:
+content:
+  - name: movies
+    label: "الأعمال"
+    type: collection
+    path: "content/movies"
+    view:
+      fields: [ title, release_year ]
+    fields:
+      - name: title
+        label: "اسم العمل"
+        type: string
+      - name: poster
         label: "صورة البوستر"
         type: image
-
-      description:
+        options:
+          path: media
+      - name: description
         label: "الوصف"
-        type: textarea
-
-      keywords:
+        type: rich-text
+      - name: keywords
         label: "الكلمات الدلالية"
         type: list
-        summary: "{{item}}"
-
-      type:
+        list:
+          min: 0
+      - name: type
         label: "نوع العمل"
         type: select
         options:
           - movie
           - series
-
-      embed_url:
+      - name: embed_url
         label: "رابط المشغل (Embed)"
-        type: text
-
-      mp4_url:
+        type: string
+      - name: mp4_url
         label: "رابط مباشر MP4"
-        type: text
-
-      release_year:
+        type: string
+      - name: release_year
         label: "سنة الإصدار"
         type: number
-
-      imdb_rating:
+      - name: imdb_rating
         label: "تقييم IMDB"
         type: number
