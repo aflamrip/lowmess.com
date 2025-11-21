@@ -21,3 +21,9 @@ pages:
         type: text
       description:
         type: textarea
+category:
+  type: select
+  options:
+    - news
+    - blog
+    - updates
