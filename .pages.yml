@@ -1,20 +1,52 @@
-title: "اسم الفيديو"
-slug: "اسم-بالعربي"
-category: "مسلسلات عربية"
-type: "series"
-images:
-  poster: "/assets/.../poster.jpg"
-  thumb: "/assets/.../thumb.jpg"
-description: "وصف قصير..."
-tags:
-  - "دراما"
-meta_keywords: "كلمة1, كلمة2"
-video:
-  source_type: "embed" # or mp4
-  source: "https://www.youtube.com/embed/..."
-series:
-  title: "اسم المسلسل"
-  season: 2
-  episode: 4
-release_date: "2025-03-02"
-duration: "00:42:00"
+media:
+  - name: media
+    label: "الوسائط"
+    input: "content/media"
+    output: "/media"
+    extensions: [jpg, jpeg, png, mp4]
+
+content:
+  - name: movies
+    label: "الأعمال"
+    type: collection
+    path: "content/movies"
+    view:
+      fields: [ title, release_year ]
+    fields:
+      - name: title
+        label: "اسم العمل"
+        type: string
+      - name: poster
+        label: "صورة البوستر"
+        type: image
+        options:
+          path: media
+      - name: description
+        label: "الوصف"
+        type: rich-text
+      - name: keywords
+        label: "الكلمات الدلالية"
+        type: list
+        list:
+          min: 0
+      - name: type
+        label: "نوع العمل"
+        type: select
+        options:
+          values:
+             - value: movie
+               label: "فيلم"
+             - value: series
+               label: "مسلسل"
+      - name: embed_url
+        label: "رابط المشغل (Embed)"
+        type: string
+      - name: mp4_url
+        label: "رابط مباشر MP4"
+        type: string
+      - name: release_year
+        label: "سنة الإصدار"
+        type: number
+      - name: imdb_rating
+        label: "تقييم IMDB"
+        type: number
