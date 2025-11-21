@@ -33,8 +33,11 @@ content:
         label: "نوع العمل"
         type: select
         options:
-          - movie
-          - series
+          values:
+             - value: movie
+               label: "فيلم"
+             - value: series
+               label: "مسلسل"
       - name: embed_url
         label: "رابط المشغل (Embed)"
         type: string
