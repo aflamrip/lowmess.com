@@ -29,21 +29,13 @@ content:
               label: "أفلام عربية"
             - value: "افلام-اجنبية"
               label: "أفلام اجنبية"
-      - name: description
-        label: "وصف قصير"
-        type: string
       - name: body
-        label: "وصف طويل"
+        label: "الوصف"
         type: rich-text
       - name: images
         label: "الصور"
         type: object
         fields:
-          - name: thumb
-            label: "الصورة المصغرة"
-            type: image
-            options:
-              path: media
           - name: poster
             label: "صورة الغلاف"
             type: image
@@ -74,22 +66,6 @@ content:
           - name: source
             label: "الرابط"
             type: string
-          - name: content_url_allowed
-            label: "مفتوح التحميل"
-            type: boolean
-      - name: series
-        label: "معلومات المسلسل"
-        type: object
-        fields:
-          - name: title
-            label: "اسم المسلسل"
-            type: string
-          - name: season
-            label: "الموسم"
-            type: number
-          - name: episode
-            label: "الحلقة"
-            type: number
       - name: release_date
         label: "تاريخ الإصدار"
         type: string
@@ -133,21 +109,13 @@ content:
               label: "مسلسلات عربية"
             - value: "مسلسلات-اجنبية"
               label: "مسلسلات اجنبية"
-      - name: description
-        label: "وصف قصير"
-        type: string
       - name: body
-        label: "وصف طويل"
+        label: "الوصف"
         type: rich-text
       - name: images
         label: "الصور"
         type: object
         fields:
-          - name: thumb
-            label: "الصورة المصغرة"
-            type: image
-            options:
-              path: media
           - name: poster
             label: "صورة الغلاف"
             type: image
@@ -178,16 +146,10 @@ content:
           - name: source
             label: "الرابط"
             type: string
-          - name: content_url_allowed
-            label: "مفتوح التحميل"
-            type: boolean
       - name: series
         label: "معلومات المسلسل"
         type: object
         fields:
-          - name: title
-            label: "اسم المسلسل"
-            type: string
           - name: season
             label: "الموسم"
             type: number
@@ -203,4 +165,84 @@ content:
       - name: rating
         label: "التقييم"
         type: number
-      - na
+      - name: external
+        label: "المراجع الخارجية"
+        type: object
+        fields:
+          - name: imdb_id
+            label: "IMDB ID"
+            type: string
+          - name: youtube_id
+            label: "YouTube ID"
+            type: string
+
+  - name: anime
+    label: "انمى"
+    type: collection
+    path: "content/anime"
+    view:
+      fields: [ title, release_date ]
+    fields:
+      - name: title
+        label: "العنوان"
+        type: string
+      - name: draft
+        label: "حالة"
+        type: boolean
+        default: false
+      - name: body
+        label: "الوصف"
+        type: rich-text
+      - name: images
+        label: "الصور"
+        type: object
+        fields:
+          - name: poster
+            label: "صورة الغلاف"
+            type: image
+            options:
+              path: media
+      - name: tags
+        label: "الكلمات الدلالية"
+        type: list
+        collapsible: true
+        default: []
+        summary: "{{item}}"
+      - name: meta_keywords
+        label: "Meta Keywords"
+        type: string
+      - name: video
+        label: "الفيديو"
+        type: object
+        fields:
+          - name: source_type
+            label: "نوع المصدر"
+            type: select
+            options:
+              values:
+                - value: mp4
+                  label: "MP4"
+                - value: embed
+                  label: "Embed"
+          - name: source
+            label: "الرابط"
+            type: string
+      - name: release_date
+        label: "تاريخ الإصدار"
+        type: string
+      - name: duration
+        label: "المدة"
+        type: string
+      - name: rating
+        label: "التقييم"
+        type: number
+      - name: external
+        label: "المراجع الخارجية"
+        type: object
+        fields:
+          - name: imdb_id
+            label: "IMDB ID"
+            type: string
+          - name: youtube_id
+            label: "YouTube ID"
+            type: string
