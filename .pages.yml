@@ -10,6 +10,14 @@ content:
     slug: "{{slug}}"
     identifier_field: title
     create: true
+
+    # تحديد الحقول التي تظهر في قائمة الفيديوهات داخل CMS
+    view:
+      fields:
+        - title
+        - draft
+        - release_date
+
     fields:
       - name: draft
         label: "حالة"
