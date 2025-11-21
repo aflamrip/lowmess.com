@@ -6,49 +6,20 @@ media:
     extensions: [jpg, jpeg, png, mp4]
 
 content:
-  - name: videos
-    label: "الفيديوهات"
+  - name: movies
+    label: "أفلام"
     type: collection
-    path: "content/videos"
+    path: "content/movies"
     view:
       fields: [ title, release_date ]
-
     fields:
       - name: title
         label: "العنوان"
         type: string
-
       - name: draft
         label: "حالة"
         type: boolean
         default: false
-
-      - name: type
-        label: "النوع"
-        type: select
-        options:
-          values:
-            - value: movie
-              label: "فيلم"
-            - value: series
-              label: "مسلسل"
-            - value: episode
-              label: "حلقة"
-            - value: anime
-              label: "انمي"
-
-      - name: main_category
-        label: "القسم الرئيسي"
-        type: select
-        options:
-          values:
-            - value: "أفلام"
-              label: "أفلام"
-            - value: "مسلسلات"
-              label: "مسلسلات"
-            - value: "انمي"
-              label: "انمي"
-
       - name: subcategory
         label: "القسم الفرعي"
         type: select
@@ -58,21 +29,12 @@ content:
               label: "أفلام عربية"
             - value: "افلام-اجنبية"
               label: "أفلام اجنبية"
-            - value: "مسلسلات-عربية"
-              label: "مسلسلات عربية"
-            - value: "مسلسلات-اجنبية"
-              label: "مسلسلات اجنبية"
-            - value: ""
-              label: "لا يوجد"
-
       - name: description
-        label: "الوصف القصير"
+        label: "وصف قصير"
         type: string
-
       - name: body
-        label: "الوصف الطويل"
+        label: "وصف طويل"
         type: rich-text
-
       - name: images
         label: "الصور"
         type: object
@@ -87,19 +49,15 @@ content:
             type: image
             options:
               path: media
-
       - name: tags
         label: "الكلمات الدلالية"
         type: list
         collapsible: true
         default: []
         summary: "{{item}}"
-
-
       - name: meta_keywords
         label: "Meta Keywords"
         type: string
-
       - name: video
         label: "الفيديو"
         type: object
@@ -119,7 +77,6 @@ content:
           - name: content_url_allowed
             label: "مفتوح التحميل"
             type: boolean
-
       - name: series
         label: "معلومات المسلسل"
         type: object
@@ -133,19 +90,15 @@ content:
           - name: episode
             label: "الحلقة"
             type: number
-
       - name: release_date
         label: "تاريخ الإصدار"
         type: string
-
       - name: duration
         label: "المدة"
         type: string
-
       - name: rating
         label: "التقييم"
         type: number
-
       - name: external
         label: "المراجع الخارجية"
         type: object
@@ -156,3 +109,98 @@ content:
           - name: youtube_id
             label: "YouTube ID"
             type: string
+
+  - name: series
+    label: "مسلسلات"
+    type: collection
+    path: "content/series"
+    view:
+      fields: [ title, release_date ]
+    fields:
+      - name: title
+        label: "العنوان"
+        type: string
+      - name: draft
+        label: "حالة"
+        type: boolean
+        default: false
+      - name: subcategory
+        label: "القسم الفرعي"
+        type: select
+        options:
+          values:
+            - value: "مسلسلات-عربية"
+              label: "مسلسلات عربية"
+            - value: "مسلسلات-اجنبية"
+              label: "مسلسلات اجنبية"
+      - name: description
+        label: "وصف قصير"
+        type: string
+      - name: body
+        label: "وصف طويل"
+        type: rich-text
+      - name: images
+        label: "الصور"
+        type: object
+        fields:
+          - name: thumb
+            label: "الصورة المصغرة"
+            type: image
+            options:
+              path: media
+          - name: poster
+            label: "صورة الغلاف"
+            type: image
+            options:
+              path: media
+      - name: tags
+        label: "الكلمات الدلالية"
+        type: list
+        collapsible: true
+        default: []
+        summary: "{{item}}"
+      - name: meta_keywords
+        label: "Meta Keywords"
+        type: string
+      - name: video
+        label: "الفيديو"
+        type: object
+        fields:
+          - name: source_type
+            label: "نوع المصدر"
+            type: select
+            options:
+              values:
+                - value: mp4
+                  label: "MP4"
+                - value: embed
+                  label: "Embed"
+          - name: source
+            label: "الرابط"
+            type: string
+          - name: content_url_allowed
+            label: "مفتوح التحميل"
+            type: boolean
+      - name: series
+        label: "معلومات المسلسل"
+        type: object
+        fields:
+          - name: title
+            label: "اسم المسلسل"
+            type: string
+          - name: season
+            label: "الموسم"
+            type: number
+          - name: episode
+            label: "الحلقة"
+            type: number
+      - name: release_date
+        label: "تاريخ الإصدار"
+        type: string
+      - name: duration
+        label: "المدة"
+        type: string
+      - name: rating
+        label: "التقييم"
+        type: number
+      - na
