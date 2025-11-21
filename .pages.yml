@@ -12,15 +12,10 @@ content:
     path: "content/movies"
     view:
       fields:
-        - name: images.poster
-          label: "صورة الغلاف"
-          type: image
-        - name: title
-          label: "العنوان"
-        - name: release_date
-          label: "تاريخ الإصدار"
-        - name: rating
-          label: "التقييم"
+        - images.poster
+        - title
+        - release_date
+        - rating
     fields:
       - name: title
         label: "العنوان"
@@ -53,9 +48,6 @@ content:
       - name: tags
         label: "الكلمات الدلالية"
         type: list
-        collapsible: true
-        default: []
-        summary: "{{item}}"
       - name: meta_keywords
         label: "Meta Keywords"
         type: string
@@ -91,15 +83,10 @@ content:
     path: "content/series"
     view:
       fields:
-        - name: images.poster
-          label: "صورة الغلاف"
-          type: image
-        - name: title
-          label: "العنوان"
-        - name: release_date
-          label: "تاريخ الإصدار"
-        - name: rating
-          label: "التقييم"
+        - images.poster
+        - title
+        - release_date
+        - rating
     fields:
       - name: title
         label: "العنوان"
@@ -132,9 +119,6 @@ content:
       - name: tags
         label: "الكلمات الدلالية"
         type: list
-        collapsible: true
-        default: []
-        summary: "{{item}}"
       - name: meta_keywords
         label: "Meta Keywords"
         type: string
@@ -180,15 +164,10 @@ content:
     path: "content/anime"
     view:
       fields:
-        - name: images.poster
-          label: "صورة الغلاف"
-          type: image
-        - name: title
-          label: "العنوان"
-        - name: release_date
-          label: "تاريخ الإصدار"
-        - name: rating
-          label: "التقييم"
+        - images.poster
+        - title
+        - release_date
+        - rating
     fields:
       - name: title
         label: "العنوان"
@@ -212,9 +191,6 @@ content:
       - name: tags
         label: "الكلمات الدلالية"
         type: list
-        collapsible: true
-        default: []
-        summary: "{{item}}"
       - name: meta_keywords
         label: "Meta Keywords"
         type: string
