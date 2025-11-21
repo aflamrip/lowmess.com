@@ -3,55 +3,196 @@ media:
     label: "الوسائط"
     input: "content/media"
     output: "/media"
-    extensions: [jpg, jpeg, png, mp4]
+    extensions: [jpg, jpeg, png, webp, mp4]
 
 content:
+  #######################################################################
+  # 📌 1 — إعدادات الموقع Site Settings
+  #######################################################################
+  - name: site_settings
+    label: "إعدادات الموقع"
+    type: file
+    path: "content/settings/site.mdx"
+    fields:
+
+      #####################################################
+      # 🔹 إعدادات عامة
+      #####################################################
+      - name: general
+        label: "إعدادات عامة"
+        type: object
+        fields:
+          - { name: site_name, label: "اسم الموقع", type: string }
+          - name: language
+            label: "اللغة الافتراضية"
+            type: select
+            options:
+              values:
+                - { value: "ar", label: "العربية" }
+                - { value: "en", label: "English" }
+            default: "ar"
+
+          - name: logo
+            label: "شعار الموقع"
+            type: image
+            options: { path: media }
+
+          - name: social
+            label: "روابط التواصل"
+            type: object
+            fields:
+              - { name: facebook, label: "Facebook", type: string }
+              - { name: twitter, label: "Twitter", type: string }
+              - { name: youtube, label: "YouTube", type: string }
+
+          - { name: footer_text, label: "نص الفوتر", type: text }
+
+      #####################################################
+      # 🔹 إعدادات SEO
+      #####################################################
+      - name: seo
+        label: "إعدادات SEO"
+        type: object
+        fields:
+          - { name: default_title, label: "العنوان الافتراضي", type: string }
+          - { name: default_description, label: "الوصف الافتراضي", type: text }
+          - { name: default_keywords, label: "الكلمات الدلالية الافتراضية", type: string }
+          - name: default_image
+            label: "الصورة الافتراضية"
+            type: image
+            options: { path: media }
+          - name: index_site
+            label: "فهرسة الموقع؟"
+            type: boolean
+            default: true
+
+      #####################################################
+      # 🔹 إعدادات الصفحة الرئيسية
+      #####################################################
+      - name: homepage
+        label: "الصفحة الرئيسية"
+        type: object
+        fields:
+          - { name: enable_slider, label: "تفعيل السلايدر", type: boolean, default: true }
+          - { name: videos_per_section, label: "عدد الفيديوهات لكل قسم", type: number, default: 12 }
+          - name: sections
+            label: "الأقسام"
+            type: object
+            fields:
+              - { name: movies, label: "أحدث الأفلام", type: boolean, default: true }
+              - { name: series, label: "أحدث المسلسلات", type: boolean, default: true }
+              - { name: anime, label: "أحدث الأنمي", type: boolean, default: true }
+
+      #####################################################
+      # 🔹 إعدادات المشغل Plyr
+      #####################################################
+      - name: player
+        label: "مشغل الفيديو"
+        type: object
+        fields:
+          - { name: autoplay, label: "تشغيل تلقائي", type: boolean, default: false }
+          - { name: accent_color, label: "Accent Color", type: string, default: "#00bcd4" }
+          - { name: default_quality, label: "الجودة الافتراضية", type: number, default: 720 }
+          - name: controls
+            label: "عناصر التحكم"
+            type: list
+            field: { name: control, type: string }
+            default:
+              - "play"
+              - "progress"
+              - "mute"
+              - "volume"
+              - "fullscreen"
+
+      #####################################################
+      # 🔹 إعدادات المسلسلات
+      #####################################################
+      - name: series_defaults
+        label: "إعدادات المسلسلات"
+        type: object
+        fields:
+          - name: default_mode
+            label: "وضع صفحة المسلسل"
+            type: select
+            options:
+              values:
+                - { value: "info", label: "صفحة تعريفية فقط" }
+                - { value: "autoplay", label: "تشغيل أول حلقة تلقائياً" }
+            default: "info"
+
+      #####################################################
+      # 🔹 إعدادات الإعلانات Ads
+      #####################################################
+      - name: ads
+        label: "الإعلانات"
+        type: object
+        fields:
+
+          - name: enabled
+            label: "تفعيل الإعلانات"
+            type: boolean
+            default: false
+
+          - name: global_ads_code
+            label: "كود عام يظهر في كل الصفحات"
+            type: text
+
+          - name: home_ads
+            label: "إعلانات الصفحة الرئيسية"
+            type: object
+            fields:
+              - { name: top_banner, label: "إعلان أعلى الصفحة", type: text }
+              - { name: bottom_banner, label: "إعلان أسفل الصفحة", type: text }
+
+          - name: video_ads
+            label: "إعلانات صفحة الفيديو"
+            type: object
+            fields:
+              - { name: before_player, label: "قبل المشغل", type: text }
+              - { name: after_player, label: "بعد المشغل", type: text }
+              - { name: sidebar_ads, label: "الشريط الجانبي", type: text }
+
+          - name: popup
+            label: "Popup"
+            type: object
+            fields:
+              - { name: popup_enabled, label: "تفعيل Popup", type: boolean, default: false }
+              - { name: popup_html, label: "كود Popup", type: text }
+
+  #######################################################################
+  # 📌 2 — الأفلام Movies (بصيغة MDX)
+  #######################################################################
   - name: movies
     label: "أفلام"
     type: collection
     path: "content/movies"
+    format: mdx
     view:
-      fields:
-        - images.poster
-        - title
-        - release_date
-        - rating
-        - subcategory
+      fields: [title, subcategory, rating]
     fields:
-      - name: title
-        label: "العنوان"
-        type: string
-      - name: draft
-        label: "حالة"
-        type: boolean
-        default: false
+
+      - { name: title, label: "العنوان", type: string }
+      - { name: slug, label: "Slug", type: string, required: false }
+      - { name: draft, label: "مسودة؟", type: boolean, default: false }
+
       - name: subcategory
         label: "القسم الفرعي"
         type: select
         options:
           values:
-            - value: "افلام-عربية"
-              label: "أفلام عربية"
-            - value: "افلام-اجنبية"
-              label: "أفلام اجنبية"
-      - name: body
-        label: "الوصف"
-        type: rich-text
-      - name: images
-        label: "الصور"
-        type: object
-        fields:
-          - name: poster
-            label: "صورة الغلاف"
-            type: image
-            options:
-              path: media
-      - name: tags
-        label: "الكلمات الدلالية"
-        type: string
-      - name: meta_keywords
-        label: "Meta Keywords"
-        type: string
+            - { value: "افلام-عربية", label: "أفلام عربية" }
+            - { value: "افلام-اجنبية", label: "أفلام أجنبية" }
+
+      - name: poster
+        label: "صورة الغلاف"
+        type: image
+        options: { path: media }
+
+      - { name: body, label: "الوصف", type: rich-text }
+
+      - { name: keywords, label: "الكلمات الدلالية", type: string }
+      - { name: meta_keywords, label: "Meta Keywords (لـ <meta name='keywords'>)", type: string }
+
       - name: video
         label: "الفيديو"
         type: object
@@ -61,141 +202,91 @@ content:
             type: select
             options:
               values:
-                - value: mp4
-                  label: "MP4"
-                - value: embed
-                  label: "Embed"
-          - name: source
-            label: "الرابط"
-            type: string
-      - name: release_date
-        label: "تاريخ الإصدار"
-        type: string
-      - name: duration
-        label: "المدة"
-        type: string
-      - name: rating
-        label: "التقييم"
-        type: number
+                - { value: "mp4", label: "MP4" }
+                - { value: "embed", label: "Embed" }
+          - { name: source, label: "الرابط", type: string }
 
+      - { name: release_date, label: "تاريخ الإصدار", type: string }
+      - { name: duration, label: "المدة", type: string }
+      - { name: rating, label: "التقييم", type: number }
+
+
+  #######################################################################
+  # 📌 3 — المسلسلات Series (MDX)
+  #######################################################################
   - name: series
     label: "مسلسلات"
     type: collection
     path: "content/series"
+    format: mdx
     view:
-      fields:
-        - images.poster
-        - title
-        - release_date
-        - rating
-        - subcategory
+      fields: [title, subcategory, rating]
     fields:
-      - name: title
-        label: "العنوان"
-        type: string
-      - name: draft
-        label: "حالة"
-        type: boolean
-        default: false
+
+      - { name: title, label: "العنوان", type: string }
+      - { name: slug, label: "Slug", type: string, required: false }
+      - { name: draft, label: "مسودة؟", type: boolean, default: false }
+
       - name: subcategory
         label: "القسم الفرعي"
         type: select
         options:
           values:
-            - value: "مسلسلات-عربية"
-              label: "مسلسلات عربية"
-            - value: "مسلسلات-اجنبية"
-              label: "مسلسلات اجنبية"
-      - name: body
-        label: "الوصف"
-        type: rich-text
-      - name: images
-        label: "الصور"
-        type: object
-        fields:
-          - name: poster
-            label: "صورة الغلاف"
-            type: image
-            options:
-              path: media
-      - name: tags
-        label: "الكلمات الدلالية"
-        type: string
-      - name: meta_keywords
-        label: "Meta Keywords"
-        type: string
-      - name: video
-        label: "الفيديو"
-        type: object
-        fields:
-          - name: source_type
-            label: "نوع المصدر"
-            type: select
-            options:
-              values:
-                - value: mp4
-                  label: "MP4"
-                - value: embed
-                  label: "Embed"
-          - name: source
-            label: "الرابط"
-            type: string
-      - name: series
-        label: "معلومات المسلسل"
-        type: object
-        fields:
-          - name: season
-            label: "الموسم"
-            type: number
-          - name: episode
-            label: "الحلقة"
-            type: number
-      - name: release_date
-        label: "تاريخ الإصدار"
-        type: string
-      - name: duration
-        label: "المدة"
-        type: string
-      - name: rating
-        label: "التقييم"
-        type: number
+            - { value: "مسلسلات-عربية", label: "مسلسلات عربية" }
+            - { value: "مسلسلات-اجنبية", label: "مسلسلات أجنبية" }
 
+      - name: poster
+        label: "صورة الغلاف"
+        type: image
+        options: { path: media }
+
+      - { name: body, label: "الوصف", type: rich-text }
+
+      - name: series_info
+        label: "تفاصيل المسلسل"
+        type: object
+        fields:
+          - { name: page_mode, label: "نوع صفحة العرض", type: select,
+              options: { values: [
+                { value: "info", label: "صفحة تعريفية فقط" },
+                { value: "autoplay", label: "تشغيل أول حلقة تلقائياً" }
+              ]},
+              default: "info"
+            }
+
+      - { name: keywords, label: "الكلمات الدلالية", type: string }
+      - { name: meta_keywords, label: "Meta Keywords", type: string }
+
+      - { name: release_date, label: "تاريخ الإصدار", type: string }
+      - { name: rating, label: "التقييم", type: number }
+
+
+  #######################################################################
+  # 📌 4 — الأنمي Anime (MDX)
+  #######################################################################
   - name: anime
-    label: "انمى"
+    label: "أنمي"
     type: collection
     path: "content/anime"
+    format: mdx
     view:
-      fields:
-        - images.poster
-        - title
-        - release_date
-        - rating
+      fields: [title, rating]
     fields:
-      - name: title
-        label: "العنوان"
-        type: string
-      - name: draft
-        label: "حالة"
-        type: boolean
-        default: false
-      - name: body
-        label: "الوصف"
-        type: rich-text
-      - name: images
-        label: "الصور"
-        type: object
-        fields:
-          - name: poster
-            label: "صورة الغلاف"
-            type: image
-            options:
-              path: media
-      - name: tags
-        label: "الكلمات الدلالية"
-        type: string
-      - name: meta_keywords
-        label: "Meta Keywords"
-        type: string
+
+      - { name: title, label: "العنوان", type: string }
+      - { name: slug, label: "Slug", type: string, required: false }
+      - { name: draft, label: "مسودة؟", type: boolean, default: false }
+
+      - name: poster
+        label: "صورة الغلاف"
+        type: image
+        options: { path: media }
+
+      - { name: body, label: "الوصف", type: rich-text }
+
+      - { name: keywords, label: "الكلمات الدلالية", type: string }
+      - { name: meta_keywords, label: "Meta Keywords", type: string }
+
       - name: video
         label: "الفيديو"
         type: object
@@ -205,19 +296,10 @@ content:
             type: select
             options:
               values:
-                - value: mp4
-                  label: "MP4"
-                - value: embed
-                  label: "Embed"
-          - name: source
-            label: "الرابط"
-            type: string
-      - name: release_date
-        label: "تاريخ الإصدار"
-        type: string
-      - name: duration
-        label: "المدة"
-        type: string
-      - name: rating
-        label: "التقييم"
-        type: number
+                - { value: "mp4", label: "MP4" }
+                - { value: "embed", label: "Embed" }
+          - { name: source, label: "الرابط", type: string }
+
+      - { name: release_date, label: "تاريخ الإصدار", type: string }
+      - { name: duration, label: "المدة", type: string }
+      - { name: rating, label: "التقييم", type: number }
