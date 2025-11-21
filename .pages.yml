@@ -16,6 +16,7 @@ content:
         - title
         - release_date
         - rating
+        - subcategory
     fields:
       - name: title
         label: "العنوان"
@@ -47,7 +48,8 @@ content:
               path: media
       - name: tags
         label: "الكلمات الدلالية"
-        type: list
+        type: string
+        multiple: true
       - name: meta_keywords
         label: "Meta Keywords"
         type: string
@@ -87,6 +89,7 @@ content:
         - title
         - release_date
         - rating
+        - subcategory
     fields:
       - name: title
         label: "العنوان"
@@ -118,7 +121,8 @@ content:
               path: media
       - name: tags
         label: "الكلمات الدلالية"
-        type: list
+        type: string
+        multiple: true
       - name: meta_keywords
         label: "Meta Keywords"
         type: string
@@ -190,7 +194,8 @@ content:
               path: media
       - name: tags
         label: "الكلمات الدلالية"
-        type: list
+        type: string
+        multiple: true
       - name: meta_keywords
         label: "Meta Keywords"
         type: string
