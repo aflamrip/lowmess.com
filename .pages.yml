@@ -1,92 +1,122 @@
 media:
-  input: public/uploads
-  output: /uploads
+  - name: media
+    label: "الوسائط"
+    input: "content/media"
+    output: "/media"
+    extensions: [jpg, jpeg, png, mp4]
 
 content:
   - name: videos
     label: "الفيديوهات"
     type: collection
-    path: src/content/videos
+    path: "content/videos"
+    view:
+      fields: [ title, release_date ]
 
     fields:
+      - name: title
+        label: "العنوان"
+        type: string
+
       - name: draft
         label: "حالة"
         type: boolean
         default: false
 
-      - name: title
-        label: "العنوان"
-        type: string
-
       - name: type
         label: "النوع"
         type: select
         options:
-          movie: "Movie"
-          series: "Series"
-          episode: "Episode"
-          anime: "Anime"
+          values:
+            - value: movie
+              label: "فيلم"
+            - value: series
+              label: "مسلسل"
+            - value: episode
+              label: "حلقة"
+            - value: anime
+              label: "انمي"
 
       - name: main_category
         label: "القسم الرئيسي"
         type: select
         options:
-          "أفلام": "أفلام"
-          "مسلسلات": "مسلسلات"
-          "انمى": "انمى"
+          values:
+            - value: "أفلام"
+              label: "أفلام"
+            - value: "مسلسلات"
+              label: "مسلسلات"
+            - value: "انمي"
+              label: "انمي"
 
       - name: subcategory
-        label: "القسم الفرعى"
+        label: "القسم الفرعي"
         type: select
         options:
-          "افلام-عربية": "أفلام عربية"
-          "افلام-اجنبية": "أفلام اجنبية"
-          "مسلسلات-عربية": "مسلسلات عربية"
-          "مسلسلات-اجنبية": "مسلسلات اجنبية"
-          "": "لا يوجد"
+          values:
+            - value: "افلام-عربية"
+              label: "أفلام عربية"
+            - value: "افلام-اجنبية"
+              label: "أفلام اجنبية"
+            - value: "مسلسلات-عربية"
+              label: "مسلسلات عربية"
+            - value: "مسلسلات-اجنبية"
+              label: "مسلسلات اجنبية"
+            - value: ""
+              label: "لا يوجد"
 
       - name: description
-        label: "وصف قصير"
+        label: "الوصف القصير"
         type: string
 
       - name: body
-        label: "وصف طويل"
-        type: string
+        label: "الوصف الطويل"
+        type: rich-text
 
       - name: images
         label: "الصور"
         type: object
         fields:
-          thumb:
+          - name: thumb
             label: "الصورة المصغرة"
-            type: media
-          poster:
+            type: image
+            options:
+              path: media
+          - name: poster
             label: "صورة الغلاف"
-            type: media
+            type: image
+            options:
+              path: media
 
       - name: tags
         label: "الكلمات الدلالية"
-        type: array
-        itemType: string
+        type: list
+        collapsible: true
+        default: []
+        summary: "{{item}}"
+
 
       - name: meta_keywords
-        label: "Meta keywords"
+        label: "Meta Keywords"
         type: string
 
       - name: video
         label: "الفيديو"
         type: object
         fields:
-          source_type:
+          - name: source_type
             label: "نوع المصدر"
             type: select
             options:
-              mp4: "MP4"
-              embed: "Embed"
-          source:
+              values:
+                - value: mp4
+                  label: "MP4"
+                - value: embed
+                  label: "Embed"
+          - name: source
             label: "الرابط"
             type: string
-          content_url_allowed:
+          - name: content_url_allowed
             label: "مفتوح التحميل"
             type: boolean
 
@@ -94,13 +124,13 @@ content:
         label: "معلومات المسلسل"
         type: object
         fields:
-          title:
+          - name: title
             label: "اسم المسلسل"
             type: string
-          season:
+          - name: season
             label: "الموسم"
             type: number
-          episode:
+          - name: episode
             label: "الحلقة"
             type: number
 
@@ -120,9 +150,9 @@ content:
         label: "المراجع الخارجية"
         type: object
         fields:
-          imdb_id:
+          - name: imdb_id
             label: "IMDB ID"
             type: string
-          youtube_id:
+          - name: youtube_id
             label: "YouTube ID"
             type: string
