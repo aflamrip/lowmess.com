@@ -11,7 +11,7 @@ content:
     identifier_field: title
     create: true
 
-    # تحديد الحقول التي تظهر في قائمة الفيديوهات داخل CMS
+    # الحقول التي تظهر في قائمة الفيديوهات داخل CMS
     view:
       fields:
         - title
