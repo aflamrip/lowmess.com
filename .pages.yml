@@ -1,52 +1,66 @@
-media:
-  - name: media
-    label: "الوسائط"
-    input: "content/media"
-    output: "/media"
-    extensions: [jpg, jpeg, png, mp4]
+backend:
+  name: git-gateway
+  branch: main
 
-content:
-  - name: movies
-    label: "الأعمال"
-    type: collection
-    path: "content/movies"
-    view:
-      fields: [ title, release_year ]
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "videos"
+    label: "الفيديوهات"
+    folder: "src/content/videos"
+    create: true
+    slug: "{{slug}}"
+    identifier_field: "title"
+    preview_path: "video/{{slug}}"
     fields:
-      - name: title
-        label: "اسم العمل"
-        type: string
-      - name: poster
-        label: "صورة البوستر"
-        type: image
+      - { label: "حالة", name: "draft", widget: "boolean", default: false }
+      - { label: "العنوان", name: "title", widget: "string", required: true }
+      - { label: "الرابط (slug)", name: "slug", widget: "string", required: true, hint: "مثال: افلام-عربية-علاء-الدين" }
+      - { label: "النوع", name: "type", widget: "select", options: ["movie","series","episode","anime"], required: true }
+      - label: "القسم الرئيسي"
+        name: "main_category"
+        widget: "select"
         options:
-          path: media
-      - name: description
-        label: "الوصف"
-        type: rich-text
-      - name: keywords
-        label: "الكلمات الدلالية"
-        type: list
-        list:
-          min: 0
-      - name: type
-        label: "نوع العمل"
-        type: select
+          - "أفلام"
+          - "مسلسلات"
+          - "انمى"
+        required: true
+      - label: "القسم الفرعى"
+        name: "subcategory"
+        widget: "select"
         options:
-          values:
-             - value: movie
-               label: "فيلم"
-             - value: series
-               label: "مسلسل"
-      - name: embed_url
-        label: "رابط المشغل (Embed)"
-        type: string
-      - name: mp4_url
-        label: "رابط مباشر MP4"
-        type: string
-      - name: release_year
-        label: "سنة الإصدار"
-        type: number
-      - name: imdb_rating
-        label: "تقييم IMDB"
-        type: number
+          - { label: "أفلام عربية", value: "افلام-عربية" }
+          - { label: "أفلام اجنبية", value: "افلام-اجنبية" }
+          - { label: "مسلسلات عربية", value: "مسلسلات-عربية" }
+          - { label: "مسلسلات اجنبية", value: "مسلسلات-اجنبية" }
+          - { label: "لا يوجد", value: "" }
+        hint: "اختر القسم الفرعى إن وُجد. الانمى لا يحتاج قسم فرعى."
+      - { label: "وصف قصير", name: "description", widget: "string" }
+      - { label: "وصف طويل", name: "body", widget: "markdown", required: false }
+      - { label: "الصورة المصغرة (thumb)", name: "images.thumb", widget: "image", required: false }
+      - { label: "صورة الغلاف (poster)", name: "images.poster", widget: "image", required: false }
+      - { label: "الكلمات الدلالية (tags)", name: "tags", widget: "list", field: { label: "tag", name: "tag", widget: "string" } }
+      - { label: "Meta keywords", name: "meta_keywords", widget: "string", hint: "يمكن فصل الكلمات بفواصل" }
+      - label: "الفيديو"
+        name: "video"
+        widget: "object"
+        fields:
+          - { label: "نوع المصدر", name: "source_type", widget: "select", options: ["mp4","embed"], default: "mp4" }
+          - { label: "المصدر (رابط MP4 أو رابط embed)", name: "source", widget: "string", required: true }
+          - { label: "مفتوح التحميل (contentUrl)", name: "content_url_allowed", widget: "boolean", default: false, hint: "ضع true إن الملف متاح للتحميل أو بث مباشر" }
+      - label: "معلومات المسلسل (إن كانت الحلقة جزءًا من مسلسل)"
+        name: "series"
+        widget: "object"
+        required: false
+        fields:
+          - { label: "اسم المسلسل", name: "title", widget: "string" }
+          - { label: "الموسم (رقم)", name: "season", widget: "number" }
+          - { label: "الحلقة (رقم)", name: "episode", widget: "number" }
+      - { label: "تاريخ الإصدار", name: "release_date", widget: "datetime" }
+      - { label: "المدة (HH:MM:SS)", name: "duration", widget: "string" }
+      - { label: "التقيم (rating)", name: "rating", widget: "number", hint: "مثال: 7.8" }
+      - { label: "المراجع الخارجية (imdb, youtube id...)", name: "external", widget: "object", fields:
+          - { label: "imdb_id", name: "imdb_id", widget: "string" }
+          - { label: "youtube_id", name: "youtube_id", widget: "string" }
+        }
