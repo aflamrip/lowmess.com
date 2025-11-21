@@ -75,16 +75,6 @@ content:
       - name: rating
         label: "التقييم"
         type: number
-      - name: external
-        label: "المراجع الخارجية"
-        type: object
-        fields:
-          - name: imdb_id
-            label: "IMDB ID"
-            type: string
-          - name: youtube_id
-            label: "YouTube ID"
-            type: string
 
   - name: series
     label: "مسلسلات"
@@ -165,16 +155,6 @@ content:
       - name: rating
         label: "التقييم"
         type: number
-      - name: external
-        label: "المراجع الخارجية"
-        type: object
-        fields:
-          - name: imdb_id
-            label: "IMDB ID"
-            type: string
-          - name: youtube_id
-            label: "YouTube ID"
-            type: string
 
   - name: anime
     label: "انمى"
@@ -236,13 +216,3 @@ content:
       - name: rating
         label: "التقييم"
         type: number
-      - name: external
-        label: "المراجع الخارجية"
-        type: object
-        fields:
-          - name: imdb_id
-            label: "IMDB ID"
-            type: string
-          - name: youtube_id
-            label: "YouTube ID"
-            type: string
