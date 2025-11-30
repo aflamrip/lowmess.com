@@ -16,21 +16,35 @@ content:
     type: collection
     path: "src/content/shows"
     fields:
-      - name: id
-        label: "Internal ID"
-        type: string
       - name: title
-        label: "Title"
+        label: "اسم المسلسل"
         type: string
-      - name: year
-        label: "Year"
-        type: number
       - name: description
-        label: "Description"
+        label: "الوصف"
         type: text
+      - name: subcategory
+        label: "القسم الفرعي"
+        type: select
+        options:
+          values:
+            - { value: "افلام-عربية", label: "أفلام عربية" }
+            - { value: "افلام-اجنبية", label: "أفلام اجنبية" }
       - name: thumbnail
-        label: "Poster"
+        label: "البوستر"
         type: image
+      - name: year
+        label: "سنة الإنتاج"
+        type: number
+      - name: draft
+        label: "حالة"
+        type: boolean
+        default: false
+      - name: tags
+        label: "الكلمات الدلالية"
+        type: string
+      - name: meta_keywords
+        label: "Meta Keywords"
+        type: rich-text
 
   # ==================== Seasons ====================
   - name: "seasons"
@@ -38,26 +52,36 @@ content:
     type: collection
     path: "src/content/seasons"
     fields:
-      - name: id
-        label: "Season ID"
-        type: string
       - name: showId
-        label: "Parent Show"
+        label: "المسلسل"
         type: select
         options:
-          values: [] # ستُملأ تلقائيًا من قائمة Shows
-      - name: title
-        label: "Title"
-        type: string
-      - name: year
-        label: "Year"
-        type: number
-      - name: description
-        label: "Description"
-        type: text
-      - name: thumbnail
-        label: "Thumbnail"
-        type: image
+          values: []  # ستملأ تلقائيًا من قائمة أسماء المسلسلات
+      - name: seasonNumber
+        label: "رقم الموسم"
+        type: select
+        options:
+          values:
+            - { value: 1, label: "الموسم 1" }
+            - { value: 2, label: "الموسم 2" }
+            - { value: 3, label: "الموسم 3" }
+            - { value: 4, label: "الموسم 4" }
+            - { value: 5, label: "الموسم 5" }
+            - { value: 6, label: "الموسم 6" }
+            - { value: 7, label: "الموسم 7" }
+            - { value: 8, label: "الموسم 8" }
+            - { value: 9, label: "الموسم 9" }
+            - { value: 10, label: "الموسم 10" }
+            - { value: 11, label: "الموسم 11" }
+            - { value: 12, label: "الموسم 12" }
+            - { value: 13, label: "الموسم 13" }
+            - { value: 14, label: "الموسم 14" }
+            - { value: 15, label: "الموسم 15" }
+            - { value: 16, label: "الموسم 16" }
+            - { value: 17, label: "الموسم 17" }
+            - { value: 18, label: "الموسم 18" }
+            - { value: 19, label: "الموسم 19" }
+            - { value: 20, label: "الموسم 20" }
 
   # ==================== Episodes ====================
   - name: "episodes"
@@ -65,43 +89,51 @@ content:
     type: collection
     path: "src/content/episodes"
     fields:
-      - name: id
-        label: "Episode ID"
-        type: string
       - name: showId
-        label: "Parent Show"
+        label: "المسلسل"
         type: select
         options:
-          values: [] # ستُملأ تلقائيًا من قائمة Shows
+          values: []  # ستملأ تلقائيًا من قائمة أسماء المسلسلات
+      - name: showThumbnail
+        label: "صورة المسلسل"
+        type: image
+        readonly: true  # يعرض البوستر تلقائيًا بدون الحاجة لإعادة رفعه
       - name: seasonEpisode
-        label: "Season & Episode"
+        label: "الموسم والحلقة"
         type: object
         fields:
           - name: season
-            label: "Season"
-            type: number
+            label: "الموسم"
+            type: select
+            options:
+              values:
+                - 1
+                - 2
+                - 3
+                - 4
+                - 5
+                - 6
+                - 7
+                - 8
+                - 9
+                - 10
           - name: episode
-            label: "Episode"
+            label: "الحلقة"
             type: number
-      - name: title
-        label: "Title"
+      - name: duration
+        label: "المدة"
         type: string
-      - name: year
-        label: "Year"
-        type: number
-      - name: videoUrl
-        label: "Video URL"
-        type: string
-      - name: description
-        label: "Description"
-        type: text
-      - name: thumbnail
-        label: "Thumbnail"
-        type: image
-      - name: type
-        label: "نوع الحلقة"
-        type: select
-        options:
-          values:
-            - { value: "season", label: "الموسم" }
-            - { value: "special", label: "حلقة مميزة / عرض خاص" }
+      - name: video
+        label: "الفيديو"
+        type: object
+        fields:
+          - name: source_type
+            label: "نوع المصدر"
+            type: select
+            options:
+              values:
+                - { value: "mp4", label: "MP4" }
+                - { value: "embed", label: "Embed" }
+          - name: source
+            label: "الرابط"
+            type: string
