@@ -1,9 +1,13 @@
 media:
   - name: "uploads"
     label: "Media"
-    type: "folder"
-    path: "public/uploads"
-
+    input: "public/uploads"
+    output: "/uploads"
+    extensions:
+      - ".jpg"
+      - ".png"
+      - ".jpeg"
+      - ".mp4"
 collections:
   - name: "movies"
     label: "Movies"
