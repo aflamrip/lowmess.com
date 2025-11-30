@@ -23,9 +23,6 @@ content:
       - name: title
         label: "اسم الفيلم"
         type: string
-      - name: thumbnail
-        label: "بوستر الفيلم"
-        type: image
       - name: description
         label: "وصف الفيلم"
         type: text
