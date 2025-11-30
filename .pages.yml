@@ -15,7 +15,7 @@ content:
   - name: "movies"
     label: "افلام"
     type: collection
-    path: "src/content/blog"
+    path: "src/content/movies"
     fields:
       - name: id
         label: "رقم الفيلم"
@@ -23,6 +23,9 @@ content:
       - name: title
         label: "اسم الفيلم"
         type: string
+      - name: thumbnail
+        label: "بوستر الفيلم"
+        type: image
       - name: description
         label: "وصف الفيلم"
         type: text
