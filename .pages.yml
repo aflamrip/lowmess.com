@@ -8,60 +8,89 @@ media:
       - ".png"
       - ".jpeg"
       - ".mp4"
-collections:
+
+content:
   - name: "movies"
     label: "Movies"
-    folder: "src/content/movies"
-    create: true
-    slug: "{{slug}}"
+    type: collection
+    path: "src/content/movies"
     fields:
       - name: "id"
         label: "Internal ID"
-        type: "string"
-      - name: "slug"
-        label: "Slug (URL)"
-        type: "string"
+        type: string
       - name: "title"
         label: "Title"
-        type: "string"
+        type: string
       - name: "year"
         label: "Year"
-        type: "number"
+        type: number
       - name: "genres"
         label: "Genres"
-        type: "list"
+        type: array        # تم استبدال list بـ array
+        of: string         # كل عنصر في المصفوفة نص
       - name: "thumbnail"
         label: "Thumbnail"
-        type: "image"
+        type: image
       - name: "videoUrl"
         label: "Video URL"
-        type: "string"
+        type: string
       - name: "description"
         label: "Description"
-        type: "text"
+        type: text
 
   - name: "shows"
     label: "Shows"
-    folder: "src/content/shows"
-    create: true
-    slug: "{{slug}}"
+    type: collection
+    path: "src/content/shows"
     fields:
       - name: "id"
         label: "Internal ID"
-        type: "string"
-      - name: "slug"
-        label: "Slug (URL)"
-        type: "string"
+        type: string
       - name: "title"
         label: "Title"
-        type: "string"
+        type: string
       - name: "description"
         label: "Description"
-        type: "text"
+        type: text
       - name: "thumbnail"
         label: "Thumbnail"
-        type: "image"
+        type: image
 
   - name: "seasons"
     label: "Seasons"
-    folder: "src/conte
+    type: collection
+    path: "src/content/shows/seasons"
+    fields:
+      - name: "id"
+        label: "Internal ID"
+        type: string
+      - name: "title"
+        label: "Title"
+        type: string
+      - name: "description"
+        label: "Description"
+        type: text
+      - name: "thumbnail"
+        label: "Thumbnail"
+        type: image
+
+  - name: "episodes"
+    label: "Episodes"
+    type: collection
+    path: "src/content/shows/episodes"
+    fields:
+      - name: "id"
+        label: "Internal ID"
+        type: string
+      - name: "title"
+        label: "Title"
+        type: string
+      - name: "description"
+        label: "Description"
+        type: text
+      - name: "videoUrl"
+        label: "Video URL"
+        type: string
+      - name: "thumbnail"
+        label: "Thumbnail"
+        type: image
