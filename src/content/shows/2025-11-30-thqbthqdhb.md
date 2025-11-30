@@ -1,13 +1,13 @@
 ---
-title: الشبح
-description: مسلسل الشبح المصرى
+title: hi1
+description: hi2
 subcategory: افلام-عربية
 thumbnail: /uploads/eFabSXu.jpg
 year: 2010
 draft: false
-tags: ثقضب
+tags: hi3
 meta_keywords: |-
-  ثقب
+  hi4
 
-  قثبقثبصثي
+  hi5
 ---
