@@ -4,10 +4,10 @@ media:
     input: "public/uploads"
     output: "/uploads"
     extensions:
-      - "jpg"
-      - "png"
-      - "jpeg"
-      - "mp4"
+      - ".jpg"
+      - ".png"
+      - ".jpeg"
+      - ".mp4"
 
 content:
 
@@ -20,18 +20,32 @@ content:
       - name: id
         label: "رقم الفيلم"
         type: number
+
       - name: title
         label: "اسم الفيلم"
         type: string
+
+      - name: year
+        label: "سنة الإنتاج"
+        type: number
+
       - name: thumbnail
         label: "بوستر الفيلم"
         type: image
+
       - name: description
         label: "وصف الفيلم"
         type: text
+
       - name: tags
         label: "الكلمات الدلالية"
         type: string
+
+      - name: draft
+        label: "حالة النشر"
+        type: boolean
+        default: false
+
       - name: video
         label: "رابط الفيلم"
         type: object
@@ -56,41 +70,50 @@ content:
       - name: tv
         label: "رقم المسلسل"
         type: number
+
       - name: title
         label: "اسم المسلسل"
         type: string
+
       - name: description
         label: "الوصف"
         type: text
+
       - name: thumbnail
         label: "البوستر"
         type: image
+
       - name: year
         label: "سنة الإنتاج"
         type: number
-      - name: draft
-        label: "حالة"
-        type: boolean
-        default: false
+
       - name: tags
         label: "الكلمات الدلالية"
         type: string
-      - name: meta_keywords
-        label: "Meta Keywords"
-        type: rich-text
+
+      - name: draft
+        label: "حالة النشر"
+        type: boolean
+        default: false
 
   # ==================== Seasons ====================
   - name: "seasons"
-    label: "موسم المسلسلات"
+    label: "مواسم المسلسلات"
     type: collection
     path: "src/content/seasons"
     fields:
       - name: tv
         label: "رقم المسلسل"
         type: number
+
       - name: se
         label: "رقم الموسم"
         type: number
+
+      - name: draft
+        label: "حالة النشر"
+        type: boolean
+        default: false
 
   # ==================== Episodes ====================
   - name: "episodes"
@@ -101,18 +124,28 @@ content:
       - name: ep
         label: "رقم الحلقة"
         type: number
+
       - name: tv
         label: "رقم المسلسل"
         type: number
+
       - name: se
         label: "رقم الموسم"
         type: number
+
       - name: title
         label: "عنوان الحلقة"
         type: string
+
       - name: duration
         label: "المدة"
         type: string
+
+      - name: draft
+        label: "حالة النشر"
+        type: boolean
+        default: false
+
       - name: video
         label: "الفيديو"
         type: object
@@ -137,41 +170,50 @@ content:
       - name: tv
         label: "رقم الأنمي"
         type: number
+
       - name: title
         label: "اسم الأنمي"
         type: string
+
       - name: description
         label: "الوصف"
         type: text
+
       - name: thumbnail
         label: "البوستر"
         type: image
+
       - name: year
         label: "سنة الإنتاج"
         type: number
-      - name: draft
-        label: "حالة"
-        type: boolean
-        default: false
+
       - name: tags
         label: "الكلمات الدلالية"
         type: string
-      - name: meta_keywords
-        label: "Meta Keywords"
-        type: rich-text
+
+      - name: draft
+        label: "حالة النشر"
+        type: boolean
+        default: false
 
   # ==================== Anime Seasons ====================
   - name: "anime_seasons"
-    label: "موسم الانمى"
+    label: "مواسم الانمي"
     type: collection
     path: "src/content/anime/seasons"
     fields:
       - name: tv
         label: "رقم الأنمي"
         type: number
+
       - name: se
         label: "رقم الموسم"
         type: number
+
+      - name: draft
+        label: "حالة النشر"
+        type: boolean
+        default: false
 
   # ==================== Anime Episodes ====================
   - name: "anime_episodes"
@@ -182,18 +224,28 @@ content:
       - name: ep
         label: "رقم الحلقة"
         type: number
+
       - name: tv
         label: "رقم الأنمي"
         type: number
+
       - name: se
         label: "رقم الموسم"
         type: number
+
       - name: title
         label: "عنوان الحلقة"
         type: string
+
       - name: duration
         label: "المدة"
         type: string
+
+      - name: draft
+        label: "حالة النشر"
+        type: boolean
+        default: false
+
       - name: video
         label: "الفيديو"
         type: object
