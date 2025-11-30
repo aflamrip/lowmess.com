@@ -1,0 +1,63 @@
+backend:
+  name: github
+  repo: username/repo-name
+  branch: main
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "movies"
+    label: "Movies"
+    folder: "src/content/movies"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: "id", label: "Internal ID", type: "string" }
+      - { name: "slug", label: "Slug (URL)", type: "string" }
+      - { name: "title", label: "Title", type: "string" }
+      - { name: "year", label: "Year", type: "number" }
+      - { name: "genres", label: "Genres", type: "list" }
+      - { name: "thumbnail", label: "Thumbnail", type: "image" }
+      - { name: "videoUrl", label: "Video URL", type: "string" }
+      - { name: "description", label: "Description", type: "text" }
+
+  - name: "shows"
+    label: "Shows"
+    folder: "src/content/shows"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: "id", label: "Internal ID", type: "string" }
+      - { name: "slug", label: "Slug (URL)", type: "string" }
+      - { name: "title", label: "Title", type: "string" }
+      - { name: "description", label: "Description", type: "text" }
+      - { name: "thumbnail", label: "Thumbnail", type: "image" }
+
+  - name: "seasons"
+    label: "Seasons"
+    folder: "src/content/seasons"
+    create: true
+    slug: "{{showId}}-season-{{seasonNumber}}"
+    fields:
+      - { name: "id", label: "Internal ID", type: "string" }
+      - { name: "showId", label: "Show ID", type: "string" }
+      - { name: "slug", label: "Slug (URL)", type: "string" }
+      - { name: "seasonNumber", label: "Season Number", type: "number" }
+      - { name: "title", label: "Title", type: "string" }
+
+  - name: "episodes"
+    label: "Episodes"
+    folder: "src/content/episodes"
+    create: true
+    slug: "{{showId}}-s{{seasonNumber}}-e{{episodeNumber}}-{{slug}}"
+    fields:
+      - { name: "id", label: "Internal ID", type: "string" }
+      - { name: "showId", label: "Show ID", type: "string" }
+      - { name: "slug", label: "Slug (URL)", type: "string" }
+      - { name: "seasonNumber", label: "Season Number", type: "number" }
+      - { name: "episodeNumber", label: "Episode Number", type: "number" }
+      - { name: "title", label: "Title", type: "string" }
+      - { name: "videoUrl", label: "Video URL", type: "string" }
+      - { name: "duration", label: "Duration", type: "string" }
+      - { name: "description", label: "Description", type: "text" }
