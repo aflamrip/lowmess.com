@@ -1,223 +1,134 @@
 media:
-  - name: media
-    label: "الوسائط"
-    input: "content/media"
-    output: "/media"
-    extensions: [jpg, jpeg, png, mp4]
+  - name: "uploads"
+    label: "Media"
+    input: "public/uploads"
+    output: "/uploads"
+    extensions:
+      - ".jpg"
+      - ".png"
+      - ".jpeg"
+      - ".mp4"
 
 content:
-  - name: movies
-    label: "أفلام"
+  # ==================== Movies ====================
+  - name: "movies"
+    label: "Movies"
     type: collection
-    path: "content/movies"
-    view:
-      fields:
-        - images.poster
-        - title
-        - release_date
-        - rating
-        - subcategory
+    path: "src/content/movies"
     fields:
-      - name: title
-        label: "العنوان"
+      - name: "id"
+        label: "Internal ID"
         type: string
-      - name: draft
-        label: "حالة"
-        type: boolean
-        default: false
-      - name: subcategory
-        label: "القسم الفرعي"
-        type: select
-        options:
-          values:
-            - value: "افلام-عربية"
-              label: "أفلام عربية"
-            - value: "افلام-اجنبية"
-              label: "أفلام اجنبية"
-      - name: body
-        label: "الوصف"
-        type: rich-text
-      - name: images
-        label: "الصور"
-        type: object
-        fields:
-          - name: poster
-            label: "صورة الغلاف"
-            type: image
-            options:
-              path: media
-      - name: tags
-        label: "الكلمات الدلالية"
+      - name: "title"
+        label: "Title"
         type: string
-      - name: meta_keywords
-        label: "Meta Keywords"
-        type: string
-      - name: video
-        label: "الفيديو"
-        type: object
-        fields:
-          - name: source_type
-            label: "نوع المصدر"
-            type: select
-            options:
-              values:
-                - value: mp4
-                  label: "MP4"
-                - value: embed
-                  label: "Embed"
-          - name: source
-            label: "الرابط"
-            type: string
-      - name: release_date
-        label: "تاريخ الإصدار"
-        type: string
-      - name: duration
-        label: "المدة"
-        type: string
-      - name: rating
-        label: "التقييم"
+      - name: "year"
+        label: "Year"
         type: number
+      - name: "genres"
+        label: "Genres"
+        type: array
+        of: string
+      - name: "thumbnail"
+        label: "Thumbnail"
+        type: image
+      - name: "videoUrl"
+        label: "Video URL"
+        type: string
+      - name: "description"
+        label: "Description"
+        type: text
 
-  - name: series
-    label: "مسلسلات"
+  # ==================== Shows ====================
+  - name: "shows"
+    label: "Shows"
     type: collection
-    path: "content/series"
-    view:
-      fields:
-        - images.poster
-        - title
-        - release_date
-        - rating
-        - subcategory
+    path: "src/content/shows"
     fields:
-      - name: title
-        label: "العنوان"
+      - name: "id"
+        label: "Internal ID"
         type: string
-      - name: draft
-        label: "حالة"
-        type: boolean
-        default: false
-      - name: subcategory
-        label: "القسم الفرعي"
-        type: select
-        options:
-          values:
-            - value: "مسلسلات-عربية"
-              label: "مسلسلات عربية"
-            - value: "مسلسلات-اجنبية"
-              label: "مسلسلات اجنبية"
-      - name: body
-        label: "الوصف"
-        type: rich-text
-      - name: images
-        label: "الصور"
+      - name: "title"
+        label: "Title"
+        type: string
+      - name: "year"
+        label: "Year"
+        type: number
+      - name: "description"
+        label: "Description"
+        type: text
+      - name: "thumbnail"
+        label: "Thumbnail"
+        type: image
+
+  # ==================== Seasons ====================
+  - name: "seasons"
+    label: "Seasons"
+    type: collection
+    path: "src/content/seasons"
+    fields:
+      - name: "id"
+        label: "Season ID"
+        type: string
+      - name: "showId"
+        label: "Parent Show ID"
+        type: string
+      - name: "title"
+        label: "Title"
+        type: string
+      - name: "year"
+        label: "Year"
+        type: number
+      - name: "description"
+        label: "Description"
+        type: text
+      - name: "thumbnail"
+        label: "Thumbnail"
+        type: image
+
+  # ==================== Episodes ====================
+  - name: "episodes"
+    label: "Episodes"
+    type: collection
+    path: "src/content/episodes"
+    fields:
+      - name: "id"
+        label: "Internal ID"
+        type: string
+      - name: "showId"
+        label: "Parent Show ID"
+        type: string
+      - name: "seasonEpisode"
+        label: "Season & Episode"
         type: object
         fields:
-          - name: poster
-            label: "صورة الغلاف"
-            type: image
-            options:
-              path: media
-      - name: tags
-        label: "الكلمات الدلالية"
-        type: string
-      - name: meta_keywords
-        label: "Meta Keywords"
-        type: string
-      - name: video
-        label: "الفيديو"
-        type: object
-        fields:
-          - name: source_type
-            label: "نوع المصدر"
-            type: select
-            options:
-              values:
-                - value: mp4
-                  label: "MP4"
-                - value: embed
-                  label: "Embed"
-          - name: source
-            label: "الرابط"
-            type: string
-      - name: series
-        label: "معلومات المسلسل"
-        type: object
-        fields:
-          - name: season
+          - name: "season"
             label: "الموسم"
             type: number
-          - name: episode
+          - name: "episode"
             label: "الحلقة"
             type: number
-      - name: release_date
-        label: "تاريخ الإصدار"
+      - name: "title"
+        label: "Title"
         type: string
-      - name: duration
-        label: "المدة"
-        type: string
-      - name: rating
-        label: "التقييم"
+      - name: "year"
+        label: "Year"
         type: number
-
-  - name: anime
-    label: "انمى"
-    type: collection
-    path: "content/anime"
-    view:
-      fields:
-        - images.poster
-        - title
-        - release_date
-        - rating
-    fields:
-      - name: title
-        label: "العنوان"
+      - name: "videoUrl"
+        label: "Video URL"
         type: string
-      - name: draft
-        label: "حالة"
-        type: boolean
-        default: false
-      - name: body
-        label: "الوصف"
-        type: rich-text
-      - name: images
-        label: "الصور"
-        type: object
-        fields:
-          - name: poster
-            label: "صورة الغلاف"
-            type: image
-            options:
-              path: media
-      - name: tags
-        label: "الكلمات الدلالية"
-        type: string
-      - name: meta_keywords
-        label: "Meta Keywords"
-        type: string
-      - name: video
-        label: "الفيديو"
-        type: object
-        fields:
-          - name: source_type
-            label: "نوع المصدر"
-            type: select
-            options:
-              values:
-                - value: mp4
-                  label: "MP4"
-                - value: embed
-                  label: "Embed"
-          - name: source
-            label: "الرابط"
-            type: string
-      - name: release_date
-        label: "تاريخ الإصدار"
-        type: string
-      - name: duration
-        label: "المدة"
-        type: string
-      - name: rating
-        label: "التقييم"
-        type: number
+      - name: "description"
+        label: "Description"
+        type: text
+      - name: "thumbnail"
+        label: "Thumbnail"
+        type: image
+      - name: "type"
+        label: "نوع الحلقة"
+        type: select
+        options:
+          values:
+            - value: "season"
+              label: "الموسم"
+            - value: "special"
+              label: "عرض خاص / حلقة مميزة"
