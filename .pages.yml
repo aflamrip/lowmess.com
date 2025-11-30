@@ -4,16 +4,16 @@ media:
     input: "public/uploads"
     output: "/uploads"
     extensions:
-      - ".jpg"
-      - ".png"
-      - ".jpeg"
-      - ".mp4"
+      - "jpg"
+      - "png"
+      - "jpeg"
+      - "mp4"
 
 content:
 
   # ==================== Movies ====================
   - name: "movies"
-    label: "Movies"
+    label: "افلام"
     type: collection
     path: "src/content/movies"
     fields:
@@ -49,7 +49,7 @@ content:
 
   # ==================== Shows ====================
   - name: "shows"
-    label: "Shows"
+    label: "مسلسلات"
     type: collection
     path: "src/content/shows"
     fields:
@@ -81,12 +81,12 @@ content:
 
   # ==================== Seasons ====================
   - name: "seasons"
-    label: "Seasons"
+    label: "موسم المسلسلات"
     type: collection
     path: "src/content/seasons"
     fields:
       - name: tv
-        label: "رقم المسلسل الأب"
+        label: "رقم المسلسل"
         type: number
       - name: se
         label: "رقم الموسم"
@@ -94,7 +94,7 @@ content:
 
   # ==================== Episodes ====================
   - name: "episodes"
-    label: "Episodes"
+    label: "حلقات المسلسلات"
     type: collection
     path: "src/content/episodes"
     fields:
@@ -102,7 +102,7 @@ content:
         label: "رقم الحلقة"
         type: number
       - name: tv
-        label: "رقم المسلسل الأب"
+        label: "رقم المسلسل"
         type: number
       - name: se
         label: "رقم الموسم"
@@ -130,7 +130,7 @@ content:
 
   # ==================== Anime ====================
   - name: "anime"
-    label: "Anime"
+    label: "انمي"
     type: collection
     path: "src/content/anime"
     fields:
@@ -162,12 +162,12 @@ content:
 
   # ==================== Anime Seasons ====================
   - name: "anime_seasons"
-    label: "Anime Seasons"
+    label: "موسم الانمى"
     type: collection
     path: "src/content/anime/seasons"
     fields:
       - name: tv
-        label: "رقم الأنمي الأب"
+        label: "رقم الأنمي"
         type: number
       - name: se
         label: "رقم الموسم"
@@ -175,7 +175,7 @@ content:
 
   # ==================== Anime Episodes ====================
   - name: "anime_episodes"
-    label: "Anime Episodes"
+    label: "حلقات الانمي"
     type: collection
     path: "src/content/anime/episodes"
     fields:
@@ -183,7 +183,7 @@ content:
         label: "رقم الحلقة"
         type: number
       - name: tv
-        label: "رقم الأنمي الأب"
+        label: "رقم الأنمي"
         type: number
       - name: se
         label: "رقم الموسم"
