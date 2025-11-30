@@ -5,4 +5,8 @@ subcategory: افلام-عربية
 year: 2010
 draft: false
 tags: ثقضب
+meta_keywords: |-
+  ثقب
+
+  قثبقثبصثي
 ---
