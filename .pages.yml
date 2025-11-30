@@ -61,55 +61,49 @@ content:
         label: "Thumbnail"
         type: image
 
-  # ==================== Seasons ====================
-  - name: "seasons"
-    label: "Seasons"
-    type: collection
-    path: "src/content/shows/**/seasons"  # يقرأ كل مجلدات السنوات
-    fields:
-      - name: "id"
-        label: "Internal ID"
-        type: string
-      - name: "showId"
-        label: "Parent Show ID"
-        type: string
-      - name: "title"
-        label: "Title"
-        type: string
-      - name: "year"
-        label: "Year"
-        type: number
-      - name: "description"
-        label: "Description"
-        type: text
-      - name: "thumbnail"
-        label: "Thumbnail"
-        type: image
+      # ==== Sub-collection: Seasons ====
+      - name: "seasons"
+        label: "Seasons"
+        type: collection
+        path: "seasons"
+        fields:
+          - name: "id"
+            label: "Season ID"
+            type: string
+          - name: "title"
+            label: "Title"
+            type: string
+          - name: "year"
+            label: "Year"
+            type: number
+          - name: "description"
+            label: "Description"
+            type: text
+          - name: "thumbnail"
+            label: "Thumbnail"
+            type: image
 
-  # ==================== Episodes ====================
-  - name: "episodes"
-    label: "Episodes"
-    type: collection
-    path: "src/content/shows/**/episodes"  # يقرأ كل مجلدات السنوات
-    fields:
-      - name: "id"
-        label: "Internal ID"
-        type: string
-      - name: "seasonId"
-        label: "Parent Season ID"
-        type: string
-      - name: "title"
-        label: "Title"
-        type: string
-      - name: "year"
-        label: "Year"
-        type: number
-      - name: "videoUrl"
-        label: "Video URL"
-        type: string
-      - name: "description"
-        label: "Description"
-        type: text
-      - name: "thumbnail"
-        label: "Thumbnail"
-        type: image
+          # ==== Sub-collection: Episodes ====
+          - name: "episodes"
+            label: "Episodes"
+            type: collection
+            path: "../episodes"
+            fields:
+              - name: "id"
+                label: "Episode ID"
+                type: string
+              - name: "title"
+                label: "Title"
+                type: string
+              - name: "year"
+                label: "Year"
+                type: number
+              - name: "videoUrl"
+                label: "Video URL"
+                type: string
+              - name: "description"
+                label: "Description"
+                type: text
+              - name: "thumbnail"
+                label: "Thumbnail"
+                type: image
