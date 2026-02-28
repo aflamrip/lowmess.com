@@ -1,18 +1,26 @@
-import mdx from "@astrojs/mdx";
+import db from "@astrojs/db";
 import sitemap from "@astrojs/sitemap";
-import embeds from "astro-embed/integration";
+import { transformerNotationDiff } from "@shikijs/transformers";
 import { defineConfig } from "astro/config";
+
+import { alabasterTheme, rubberTheme } from "./syntax-themes";
 
 // https://astro.build/config
 export default defineConfig({
 	site: "https://lowmess.com",
+	markdown: {
+		shikiConfig: {
+			defaultColor: false,
+			themes: {
+				light: alabasterTheme,
+				dark: rubberTheme,
+			},
+			transformers: [transformerNotationDiff()],
+		},
+	},
 	integrations: [
-		embeds(),
-		mdx({
-			syntaxHighlight: "shiki",
-			shikiConfig: { theme: "plastic" },
-		}),
 		sitemap({ filter: (page) => !page.includes("/blog/archive") }),
+		db(),
 	],
 	redirects: {
 		"/projects": "/work",

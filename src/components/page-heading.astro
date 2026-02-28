@@ -1,0 +1,55 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+import Eyebrow from "#components/eyebrow.astro";
+
+type Props = HTMLAttributes<"h1"> & {
+	eyebrowText?: string;
+	eyebrowProps?: HTMLAttributes<"span">;
+
+	slotIsHeading?: boolean;
+};
+
+const {
+	eyebrowText,
+	eyebrowProps,
+	slotIsHeading = false,
+	...props
+} = Astro.props;
+
+const Headline = slotIsHeading ? "h1" : "span";
+---
+
+{
+	eyebrowText && (
+		<Eyebrow
+			as={slotIsHeading ? "span" : "h1"}
+			class="eyebrow"
+			set:html={eyebrowText}
+			{...eyebrowProps}
+		/>
+	)
+}
+
+<Headline class="headline" {...props}><slot /></Headline>
+
+<style>
+	.eyebrow {
+		display: block;
+		margin-block-end: var(--rhythm-xs);
+		text-align: center;
+	}
+
+	.headline {
+		display: block;
+		margin-block-start: 0;
+		margin-block-end: var(--rhythm-xxl);
+		font-size: var(--font-size-heading);
+		line-height: var(--line-height-solid);
+		font-family: var(--font-family-heading);
+		text-transform: lowercase;
+		text-align: center;
+		text-wrap: balance;
+		font-weight: 700;
+	}
+</style>

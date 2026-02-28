@@ -1,6 +1,6 @@
 ---
-import PageHeading from "#components/PageHeading.astro";
-import GlobalLayout from "#layouts/GlobalLayout.astro";
+import PageHeading from "#components/page-heading.astro";
+import GlobalLayout from "#layouts/global.astro";
 
 import pkg from "../../package-lock.json";
 
@@ -8,7 +8,6 @@ const {
 	packages: {
 		"node_modules/astro": { version: astroVersion },
 		"node_modules/typescript": { version: typescriptVersion },
-		"node_modules/@mdx-js/mdx": { version: mdxVersion },
 		"node_modules/shiki": { version: shikiVersion },
 		"node_modules/eslint": { version: eslintVersion },
 		"node_modules/prettier": { version: prettierVersion },
@@ -38,7 +37,7 @@ const {
 			</li>
 
 			<li class="dank">
-				<a href="https://philpl.gumroad.com/l/dank-mono">Dank Mono</a>
+				<a href="https://github.com/tonsky/FiraCode">Fira Code</a>
 			</li>
 		</ul>
 
@@ -58,18 +57,10 @@ const {
 			</li>
 
 			<li>
-				<a href="https://mdxjs.com/"
-					>MDX <span class="version">{mdxVersion}</span></a
-				>
-			</li>
-
-			<li>
 				<a href="https://shiki.matsu.io/"
 					>Shiki <span class="version">{shikiVersion}</span></a
 				>
 			</li>
-
-			<li><a href="https://plastic.wstone.uk/">Plastic</a></li>
 
 			<li>
 				<a href="https://eslint.org/"
@@ -104,20 +95,20 @@ const {
 
 		@media (min-width: 30em) {
 			grid-template-columns: repeat(2, max-content);
-			row-gap: var(--rhythm-lg);
+			row-gap: var(--rhythm-sm);
 		}
 
 		@media (min-width: 36em) {
 			margin-inline-start: calc(var(--space-xxl) * -1);
 		}
 
-		@media (min-width: 55em) {
+		@media (min-width: 58em) {
 			grid-template-columns: repeat(4, max-content);
 		}
 	}
 
 	.packages {
-		@media (min-width: 55em) {
+		@media (min-width: 58em) {
 			grid-column: 4;
 			grid-row: 1/3;
 		}

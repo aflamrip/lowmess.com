@@ -14,19 +14,10 @@ body {
 	padding-block-start: var(--container-padding);
 	padding-inline: var(--container-padding);
 	background-color: var(--color-background);
-	background-image: url(/images/noise-light.svg);
-	/* breaks background-blend-mode in iOS */
-	/* background-repeat: repeat; */
-	background-size: cover;
-	background-blend-mode: multiply;
 	font-size: var(--font-size-md);
 	font-family: var(--font-family-body);
 	line-height: var(--line-height-body);
 	color: var(--color-text);
-
-	@media (prefers-color-scheme: dark) {
-		background-image: url(/images/noise-dark.svg);
-	}
 }
 
 body > main {
@@ -45,7 +36,7 @@ body > main {
 	line-height: var(--font-family-heading);
 }
 
-:is(code, pre) {
+:where(code, pre) {
 	font-family: var(--font-family-mono);
 	color: currentColor;
 }
@@ -53,12 +44,13 @@ body > main {
 :where(p, a) > code {
 	display: inline-block;
 	margin-inline: 0.1em;
-	border: 1px solid hsl(from var(--color-primary) h s l / 0.25);
+	border: 1px solid hsl(from var(--color-primary) h s l / 0.125);
 	border-radius: 2px;
-	padding-block: 0.1em;
-	padding-inline: 0.2em;
-	background-color: hsl(from var(--color-primary) h s l / 0.05);
-	line-height: 1;
+	padding-block: 2px;
+	padding-inline: 4px;
+	background-color: var(--color-code-background);
+	color: var(--color-code-text);
+	line-height: var(--line-height-solid);
 }
 
 :where(p, li, code, pre) {
@@ -78,4 +70,46 @@ body > main {
 	/* https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe */
 	white-space: nowrap;
 	word-wrap: normal;
+}
+
+.astro-code,
+.astro-code span {
+	background-color: light-dark(var(--shiki-light-bg), var(--shiki-dark-bg));
+	color: light-dark(var(--shiki-light), var(--shiki-dark));
+}
+
+.astro-code .diff {
+	position: relative;
+
+	&.add,
+	&.add span {
+		color: light-dark(#448c27, #98c379);
+	}
+
+	&.remove,
+	&.remove span {
+		color: light-dark(#aa3731, #e06c75);
+	}
+
+	&::before {
+		position: absolute;
+		top: -0.15lh;
+		left: calc(var(--space-sm) * -1);
+
+		@media (min-width: 48em) {
+			left: calc(var(--space-md) * -1);
+		}
+
+		@media (min-width: 64em) {
+			left: calc(var(--space-md) * -2);
+		}
+	}
+
+	&.add::before {
+		content: "+";
+	}
+
+	&.remove::before {
+		content: "-";
+	}
 }
